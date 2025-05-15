@@ -4,7 +4,7 @@
 
 ## Содержимое
 
-- `typescript.json` - Правила для TypeScript и Express.js
+- `typescript.mdc` - Правила для TypeScript и Express.js
 
 ## Как использовать
 
@@ -13,7 +13,7 @@
 ```bash
 # В корневой директории вашего проекта
 mkdir -p .cursor
-git submodule add https://github.com/your-username/cursor_rules_ts_rules .cursor/rules
+git submodule add https://github.com/Oreen/up-im-backend-cursor-rules .cursor/rules
 ```
 
 ### Обновление правил

@@ -1,0 +1,60 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Среда кодирования
+Пользователь задает вопросы о следующих языках кодирования:
+- JavaScript
+- TypeScript
+- Express.js
+
+# Структура проекта
+- core - ядро. Общая функцианальность для всех проектов компании реализуется в нем. Функции свойственные только текущему проекту реализуются вне этой дирректории. Структура папок ядра совпадает со структрурой папок в корне проекта:
+    - controllers - контроллеры Express.js
+    - error/ApiError.ts - расширяет стандартный класс Error для ошибок которые необходимо передать на frontend. Для ошибок класса Error в core/middleware/errorHandlingMiddleware.ts пожменяется текст ошибки на "Непредвиденная ошибка!"
+    - events - Event Bus
+    - interfaces - Интерфейсы
+    - middleware - Middleware Express.js
+    - model - модели данных с функциями из получения из бд и сохранения в бд
+    - routes - Router Express.js
+    - service - Сервисы
+    - updateScripts - скрипты миграции. Как правило это файлы с mysql зарпосами обновляющими структуру бд. Превикс файов это дата их создания
+    - utils - Различные функии работы со строками и массивами используемые в проекте. Например arrayChunk, numberFormat, stripTags
+    - workers - фоновые службы, выполняющие операции в отдельном процессе. Запускаются с помощью workers.ts
+
+# Использование библиотек
+- По возможности избегай необходимости установки новых библиотек в проект
+- Для сетевых запросов используй axios
+- Для работы с датами используй dayjs
+- Для работы с базой данных Mysql используй mysql2, импортируя уже настроенный пул из core/sources/db.ts
+- Для кэширования и хранение временных данных используй redis импортированный из core/sources/redis.ts
+
+# Стиль кода
+- Используйте двойные кавычки для строк (за исключением случаев, когда нужно избежать экранирования)
+- Пропускайте точки с запятой (если это не требуется для устранения неоднозначности)
+- Используйте запятые в конце многострочных литералов объектов/массивов
+- Размещайте операторы else на той же строке, что и закрывающие фигурные скобки
+- Используйте фигурные скобки для многострочных операторов if
+
+# Правила TypeScript
+- Используйте TypeScript для всего нового кода
+- Предпочитайте неизменяемые данные (const, readonly)
+- Используйте необязательные операторы цепочки (?.) и нулевого объединения (??)
+
+# Соглашения об именовании
+- Use PascalCase for:
+    - Type definitions
+- Use camelCase for:
+    - Directory names
+    - File names (e.g., contentController.ts)
+    - Variables
+    - Functions
+    - Methods
+    - Properties
+- Use UPPERCASE for:
+    - Environment variables
+    - Constants
+    - Global configurations
+- Use snake_case for:
+- Interface names (not "Type" names) must begin with the prefix "i" followed by the name in PascalCase (e.g. iUser, iProduct). This helps to easily distinguish interfaces from other data types.
